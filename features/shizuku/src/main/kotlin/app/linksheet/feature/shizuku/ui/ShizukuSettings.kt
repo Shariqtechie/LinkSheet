@@ -114,17 +114,7 @@ private fun SaneLazyListScope.notInstalled(openWeb: () -> Unit, selectManager: (
         )
     }
 
-    item(
-        key = R.string.settings_shizuku__title_select_manager,
-        contentType = ContentType.SingleGroupItem
-    ) {
-        SelectableShapeListItem(
-            headlineContent = textContent(R.string.settings_shizuku__title_select_manager),
-            supportingContent = textContent(R.string.settings_shizuku__text_select_manager),
-            position = ContentPosition.Trailing,
-            onClick = selectManager
-        )
-    }
+    selectManagerItem(selectManager)
 }
 
 private fun SaneLazyListScope.notRunning(openManager: () -> Unit, selectManager: () -> Unit) {
@@ -143,6 +133,14 @@ private fun SaneLazyListScope.notRunning(openManager: () -> Unit, selectManager:
         )
     }
 
+    selectManagerItem(selectManager)
+}
+
+private fun SaneLazyListScope.selectManagerItem(onClick: () -> Unit) {
+    item(contentType = ContentType.Spacer) {
+        Spacer(modifier = Modifier.height(12.dp))
+    }
+
     item(
         key = R.string.settings_shizuku__title_select_manager,
         contentType = ContentType.SingleGroupItem
@@ -151,7 +149,7 @@ private fun SaneLazyListScope.notRunning(openManager: () -> Unit, selectManager:
             headlineContent = textContent(R.string.settings_shizuku__title_select_manager),
             supportingContent = textContent(R.string.settings_shizuku__text_select_manager),
             position = ContentPosition.Trailing,
-            onClick = selectManager
+            onClick = onClick
         )
     }
 }
